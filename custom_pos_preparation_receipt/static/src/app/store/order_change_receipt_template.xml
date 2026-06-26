@@ -2,53 +2,34 @@
 <templates id="template" xml:space="preserve">
 
     <t t-inherit="point_of_sale.OrderChangeReceipt" t-inherit-mode="extension">
-        <!-- Quitar el encabezado completo del ticket de preparación -->
+        <!-- 1. Quitar el encabezado original -->
         <xpath expr="//div[hasclass('receipt-header')]" position="replace"/>
-        <!-- Quitar el separador punteado que iba justo debajo del encabezado -->
         <xpath expr="//hr" position="replace"/>
-        <!-- Quitar la nota general de la orden (al final del ticket) -->
         <xpath expr="//t[@t-if='(!changedlines.length or fullReceipt) and changes.order_note.length']" position="replace"/>
 
-        <!-- Ocultar el título operacional si es "New" (pero mantenerlo para "Cancelled", etc.) -->
+        <!-- 2. Quitar el título "New" -->
         <xpath expr="//t[@t-if='operational_title']" position="replace">
             <t t-if="operational_title and operational_title !== 'New'">
                 <div class="pos-receipt-title text-center" t-esc="operational_title" />
             </t>
         </xpath>
 
-        <!-- Mostrar Logo y Nombre del Cliente al inicio del cuerpo del ticket -->
+        <!-- 3. Mostrar el Nombre del Cliente (HTML simple compatible) -->
         <xpath expr="//div[hasclass('pos-receipt-body')]" position="before">
-            <div style="margin-bottom: 10px; padding-bottom: 5px; border-bottom: 1px dashed black;">
-                <!-- Logo de la Empresa (Centrado) -->
-                <!-- <div class="text-center">
-                    <img t-attf-src="/web/image?model=res.company&amp;id={{changes.company_id}}&amp;field=logo" 
-                         style="max-height: 40px; display: block; margin: 0 auto 5px auto;"/>
-                </div> -->
-                
-                <!-- Nombre del Cliente (si existe, Alineado a la Izquierda) -->
-                <t t-if="changes.partner_name">
-                    <div style="font-size: 110%; font-weight: bold; text-align: left; margin-top: 5px;">
-                        Cliente: <t t-esc="changes.partner_name"/>
-                    </div>
-                </t>
-            </div>
+            <t t-if="changes.partner_name">
+                <div class="text-left" style="font-weight: bold; font-size: 110%; margin-bottom: 5px;">
+                    Cliente: <t t-esc="changes.partner_name"/>
+                </div>
+                <hr style="border: none; border-top: 1px dashed black;"/>
+            </t>
         </xpath>
 
-        <!-- Modificar el formato de visualización del producto: Referencia interna + Nombre del producto + xUnidad -->
+        <!-- 4. Formato de Producto: Referencia + Nombre + xUnidad (Usando clases nativas del POS) -->
         <xpath expr="//div[hasclass('orderline')]/div[hasclass('d-flex')]" position="replace">
-            <div class="d-flex medium align-items-center">
-                <!-- Referencia Interna (si existe) -->
-                <t t-if="line.default_code">
-                    <span style="font-weight: bold; margin-right: 5px;">
-                        [<t t-esc="line.default_code"/>]
-                    </span>
-                </t>
-                <!-- Nombre del Producto -->
+            <div class="d-flex medium">
+                <t t-if="line.default_code">[<t t-esc="line.default_code"/>] </t>
                 <span class="product-name" t-esc="line.display_name"/>
-                <!-- Cantidad (xUnidad) -->
-                <span class="ms-2" style="font-weight: bold;">
-                    x<t t-esc="line.quantity"/>
-                </span>
+                <span> x<t t-esc="line.quantity"/></span>
             </div>
         </xpath>
     </t>

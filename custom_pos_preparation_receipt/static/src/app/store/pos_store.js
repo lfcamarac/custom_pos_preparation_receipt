@@ -5,10 +5,9 @@ import { patch } from "@web/core/utils/patch";
 import { PosStore } from "@point_of_sale/app/store/pos_store";
 
 patch(PosStore.prototype, {
-    // 1. Agregar el ID de la empresa y nombre del cliente a la info del ticket
+    // 1. Agregar el nombre del cliente a la info del ticket
     getPrintingChanges(order, diningModeUpdate) {
         const result = super.getPrintingChanges(...arguments);
-        result.company_id = this.company.id;
         result.partner_name = order.partner_id?.name || order.get_partner()?.name || "";
         return result;
     },
