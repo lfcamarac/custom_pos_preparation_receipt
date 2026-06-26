@@ -17,10 +17,15 @@
         <!-- 3. Mostrar Logo y Nombre del Cliente al inicio del cuerpo del ticket -->
         <xpath expr="//div[hasclass('pos-receipt-body')]" position="before">
             <div style="margin-bottom: 10px; padding-bottom: 5px; border-bottom: 1px dashed black;">
-                <!-- Logo de la Empresa (Centrado) -->
                 <div class="text-center" style="margin-bottom: 5px;">
-                    <img class="pos-receipt-logo" t-attf-src="/web/image?model=res.company&amp;id={{changes.company_id}}&amp;field=logo" 
-                         style="max-height: 150px; display: block; margin: 0 auto;"/>
+                    <t t-if="changes and changes.company_logo">
+                        <img class="pos-receipt-logo" t-att-src="changes.company_logo" 
+                             style="max-height: 150px; display: block; margin: 0 auto;"/>
+                    </t>
+                    <t t-elif="changes and changes.company_id">
+                        <img class="pos-receipt-logo" t-attf-src="/web/image?model=res.company&amp;id={{changes.company_id}}&amp;field=logo" 
+                             style="max-height: 150px; display: block; margin: 0 auto;"/>
+                    </t>
                 </div>
                 
                 <!-- Nombre del Cliente (si existe, Alineado a la Izquierda) -->
