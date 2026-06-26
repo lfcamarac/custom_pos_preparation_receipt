@@ -25,7 +25,7 @@
         </xpath>
 
         <!-- 4. Formato de Producto: Referencia + Nombre + xUnidad (Usando clases nativas del POS) -->
-        <xpath expr="//div[hasclass('orderline')]/div[hasclass('d-flex')]" position="replace">
+        <xpath expr="//div[@t-foreach='changedlines']/div/div[hasclass('d-flex')]" position="replace">
             <div class="d-flex medium">
                 <t t-if="line and line.default_code">[<t t-esc="line.default_code"/>] </t>
                 <span class="product-name" t-esc="line.display_name"/>
