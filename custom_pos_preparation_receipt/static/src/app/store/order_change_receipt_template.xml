@@ -19,8 +19,8 @@
             <div style="margin-bottom: 10px; padding-bottom: 5px; border-bottom: 1px dashed black;">
                 <!-- Logo de la Empresa (Centrado) -->
                 <div class="text-center" style="margin-bottom: 5px;">
-                    <img t-attf-src="/web/image?model=res.company&amp;id={{changes.company_id}}&amp;field=logo" 
-                         style="max-height: 40px; display: inline-block; margin: 0 auto;"/>
+                    <img class="pos-receipt-logo" t-attf-src="/web/image?model=res.company&amp;id={{changes.company_id}}&amp;field=logo" 
+                         style="max-height: 150px; display: block; margin: 0 auto;"/>
                 </div>
                 
                 <!-- Nombre del Cliente (si existe, Alineado a la Izquierda) -->
