@@ -27,6 +27,20 @@ patch(PosStore.prototype, {
             }
             return line;
         });
-        return await super.getRenderedReceipt(order, title, modifiedLines, fullReceipt, diningModeUpdate);
+        const receipt = await super.getRenderedReceipt(order, title, modifiedLines, fullReceipt, diningModeUpdate);
+        const imgs = receipt.querySelectorAll("img");
+        if (imgs.length > 0) {
+            const promises = Array.from(imgs).map(img => {
+                if (img.complete) {
+                    return Promise.resolve();
+                }
+                return new Promise(resolve => {
+                    img.onload = resolve;
+                    img.onerror = resolve;
+                });
+            });
+            await Promise.all(promises);
+        }
+        return receipt;
     }
 });
