@@ -14,7 +14,24 @@
             </t>
         </xpath>
 
-   
+        <!-- 3. Mostrar el Nombre del Cliente (HTML simple compatible) -->
+        <xpath expr="//div[hasclass('pos-receipt-body')]" position="before">
+            <t t-if="changes.partner_name">
+                <div class="text-left" style="font-weight: bold; font-size: 110%; margin-bottom: 5px;">
+                    Cliente: <t t-esc="changes.partner_name"/>
+                </div>
+                <hr style="border: none; border-top: 1px dashed black;"/>
+            </t>
+        </xpath>
+
+        <!-- 4. Formato de Producto: Referencia + Nombre + xUnidad (Usando clases nativas del POS) -->
+        <xpath expr="//div[hasclass('orderline')]/div[hasclass('d-flex')]" position="replace">
+            <div class="d-flex medium">
+                <t t-if="line.default_code">[<t t-esc="line.default_code"/>] </t>
+                <span class="product-name" t-esc="line.display_name"/>
+                <span> x<t t-esc="line.quantity"/></span>
+            </div>
+        </xpath>
     </t>
 
 </templates>
