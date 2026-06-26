@@ -13,6 +13,7 @@ encabezado del ticket de preparación y la nota general de la orden, dejando
     'depends': ['point_of_sale'],
     'assets': {
         'point_of_sale._assets_pos': [
+            'custom_pos_preparation_receipt/static/src/app/store/pos_store.js',
             'custom_pos_preparation_receipt/static/src/app/store/order_change_receipt_template.xml',
         ],
     },
