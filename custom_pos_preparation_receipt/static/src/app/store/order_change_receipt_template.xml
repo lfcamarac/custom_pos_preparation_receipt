@@ -20,10 +20,10 @@
         <xpath expr="//div[hasclass('pos-receipt-body')]" position="before">
             <div style="margin-bottom: 10px; padding-bottom: 5px; border-bottom: 1px dashed black;">
                 <!-- Logo de la Empresa (Centrado) -->
-                <div class="text-center">
+                <!-- <div class="text-center">
                     <img t-attf-src="/web/image?model=res.company&amp;id={{changes.company_id}}&amp;field=logo" 
                          style="max-height: 40px; display: block; margin: 0 auto 5px auto;"/>
-                </div>
+                </div> -->
                 
                 <!-- Nombre del Cliente (si existe, Alineado a la Izquierda) -->
                 <t t-if="changes.partner_name">
