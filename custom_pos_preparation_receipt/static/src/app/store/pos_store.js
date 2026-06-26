@@ -5,16 +5,17 @@ import { patch } from "@web/core/utils/patch";
 import { PosStore } from "@point_of_sale/app/store/pos_store";
 
 patch(PosStore.prototype, {
-    // 1. Agregar el nombre del cliente de forma segura en una copia del resultado
+    // 1. Agregar el ID de la empresa y el nombre del cliente a la info del ticket
     getPrintingChanges(order, diningModeUpdate) {
         const result = super.getPrintingChanges(...arguments);
         return {
             ...result,
+            company_id: this.company.id,
             partner_name: order.get_partner()?.name || order.partner_id?.name || "",
         };
     },
 
-    // 2. Clonar las líneas para evitar excepciones de tipo "Read-Only" en los proxies reactivos de Odoo
+    // 2. Inyectar el default_code (referencia interna) a cada línea del ticket de cambio
     async getRenderedReceipt(order, title, lines, fullReceipt = false, diningModeUpdate) {
         const modifiedLines = (lines || []).map(line => {
             if (line && typeof line === "object") {
