@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-inherit="point_of_sale.OrderChangeReceipt" t-inherit-mode="extension">
+        <!-- Quitar el encabezado completo del ticket de preparación -->
+        <xpath expr="//div[hasclass('receipt-header')]" position="replace"/>
+        <!-- Quitar el separador punteado que iba justo debajo del encabezado -->
+        <xpath expr="//hr" position="replace"/>
+        <!-- Quitar la nota general de la orden (al final del ticket) -->
+        <xpath expr="//t[@t-if='(!changedlines.length or fullReceipt) and changes.order_note.length']" position="replace"/>
+    </t>
+
+</templates>
