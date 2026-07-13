@@ -17,6 +17,11 @@
         <!-- 3. Mostrar Logo y Nombre del Cliente al inicio del cuerpo del ticket -->
         <xpath expr="//div[hasclass('pos-receipt-body')]" position="before">
             <div style="margin-bottom: 10px; padding-bottom: 5px; border-bottom: 1px dashed black;">
+                <!-- Fecha y Hora (arriba del logo) -->
+                <div style="text-align: left; font-size: 85%; margin-bottom: 5px; font-weight: bold;">
+                    Fecha: <t t-esc="changes.formatted_date"/>
+                </div>
+
                 <div class="text-center" style="margin-bottom: 5px;">
                     <t t-if="changes and changes.company_logo">
                         <img class="pos-receipt-logo" t-att-src="changes.company_logo" 
