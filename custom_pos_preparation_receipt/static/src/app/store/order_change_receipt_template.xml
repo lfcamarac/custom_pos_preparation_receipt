@@ -23,7 +23,7 @@
                 </div>
                 <!-- Número de Orden -->
                 <div style="text-align: left; font-size: 85%; margin-bottom: 5px; font-weight: bold;">
-                    Orden: <t t-esc="changes.pos_reference"/>
+                    <t t-esc="changes.pos_reference"/>
                 </div>
 
                 <div class="text-center" style="margin-bottom: 5px;">
