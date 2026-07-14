@@ -66,10 +66,11 @@
         </xpath>
 
         <!-- 5. Añadir espacio en blanco al final para evitar cortes en el texto -->
-        <xpath expr="//div[hasclass('pos-receipt-body')]" position="after">
-            <div style="margin-top: 20px;">
-                <br/><br/><br/>
-            </div>
+        <xpath expr="//div[hasclass('pos-receipt-body')]" position="inside">
+            <br/>
+            <br/>
+            <br/>
+            <br/>
         </xpath>
     </t>
 
