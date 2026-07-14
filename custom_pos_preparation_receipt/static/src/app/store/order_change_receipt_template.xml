@@ -64,6 +64,13 @@
                 </div>
             </div>
         </xpath>
+
+        <!-- 5. Añadir espacio en blanco al final para evitar cortes en el texto -->
+        <xpath expr="//div[@t-foreach='changedlines']" position="after">
+            <div style="margin-top: 20px;">
+                <br/><br/><br/><br/>
+            </div>
+        </xpath>
     </t>
 
 </templates>
