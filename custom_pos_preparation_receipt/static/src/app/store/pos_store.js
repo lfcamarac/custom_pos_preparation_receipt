@@ -42,6 +42,7 @@ patch(PosStore.prototype, {
             company_logo: this.company_logo_base64 || "",
             partner_name: order.get_partner()?.name || order.partner_id?.name || "",
             formatted_date: formattedDate,
+            pos_reference: order.pos_reference || order.name || "",
         };
     },
 

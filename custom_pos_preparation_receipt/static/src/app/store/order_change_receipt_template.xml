@@ -18,8 +18,12 @@
         <xpath expr="//div[hasclass('pos-receipt-body')]" position="before">
             <div style="margin-bottom: 10px; padding-bottom: 5px; border-bottom: 1px dashed black;">
                 <!-- Fecha y Hora (arriba del logo) -->
-                <div style="text-align: left; font-size: 85%; margin-bottom: 5px; font-weight: bold;">
+                <div style="text-align: left; font-size: 85%; margin-bottom: 2px; font-weight: bold;">
                     Fecha: <t t-esc="changes.formatted_date"/>
+                </div>
+                <!-- Número de Orden -->
+                <div style="text-align: left; font-size: 85%; margin-bottom: 5px; font-weight: bold;">
+                    Orden: <t t-esc="changes.pos_reference"/>
                 </div>
 
                 <div class="text-center" style="margin-bottom: 5px;">
